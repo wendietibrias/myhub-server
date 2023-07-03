@@ -1,0 +1,7 @@
+ {
+  "name": "default",
+  "type": "mysql",
+  "entities": [
+      "entities/**/*entity.ts"
+   ]
+}
