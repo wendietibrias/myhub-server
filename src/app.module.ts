@@ -14,20 +14,21 @@ import {
 } from "./entities";
 import { JwtModule } from '@nestjs/jwt';
 import { AllModule } from './modules/allmodule.module';
+import { readFileSync } from 'fs';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
        type:"mysql",
-       host:process.env.DB_HOST,
-       port: Number(process.env.DB_PORT),
-       username: process.env.DB_USERNAME,
-       password : process.env.DB_PASSWORD,
        database: process.env.DB_NAME,
+       username:process.env.DB_USERNAME,
+       password:process.env.DB_PASSWORD,
+       host:process.env.DB_HOST,
+       port:Number(process.env.DB_PORT),
        entities:[Comment,User,Profile,Post,Like,Follower,Following],
-       synchronize:true,
-       autoLoadEntities:true
+       synchronize:false,
+       autoLoadEntities:true,
     }),
     JwtModule.register({
         global:true,
